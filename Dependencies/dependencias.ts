@@ -3,3 +3,4 @@ export {Application, Router, Context} from "https://deno.land/x/oak@v17.2.0/mod.
 export type {RouterContext} from "https://deno.land/x/oak@v17.2.0/mod.ts";
 export {z} from "https://deno.land/x/zod@v3.24.4/mod.ts";
 export { oakCors } from "https://deno.land/x/cors@v1.2.2/mod.ts";
+export * as bcrypt from "https://deno.land/x/bcrypt@v0.4.1/mod.ts";
