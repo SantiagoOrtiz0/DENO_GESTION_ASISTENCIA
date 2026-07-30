@@ -9,8 +9,7 @@ app.use(oakCors({
     origin:"*"
 }));
 
-const routes = [UserRouter,loginRouter];
-const routes = [UserRouter, AprendizRouter];
+const routes = [UserRouter,loginRouter,AprendizRouter];
 
 routes.forEach(router =>{
     app.use(router.routes());

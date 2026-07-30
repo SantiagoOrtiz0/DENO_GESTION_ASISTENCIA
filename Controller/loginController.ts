@@ -1,6 +1,7 @@
 import { Context } from "../Dependencies/dependencias.ts";
 import { conexion } from "../Model/conexion.ts";
 import { generarToken } from "../Utils/jwt.ts";
+import { bcrypt } from "../Dependencies/dependencias.ts";
 
 export const PostLogin = async (ctx: Context) => {
     const body = await ctx.request.body.json();
@@ -20,7 +21,7 @@ export const PostLogin = async (ctx: Context) => {
     if (usuario && usuario.length > 0) {
         const encontrado = usuario[0];
 
-        if (encontrado.contrasena !== contrasena) {
+        if (!(await bcrypt.compare(contrasena,encontrado.contrasena))) {
             ctx.response.status = 401;
             ctx.response.body = {mensaje: "Contraseña incorrecta"}; 
             return;
@@ -47,7 +48,7 @@ export const PostLogin = async (ctx: Context) => {
     if(aprendices && aprendices.length > 0 ) {
         const encontrado = aprendices[0];
 
-        if(encontrado.contrasena !== contrasena) {
+        if(!(await bcrypt.compare(contrasena,encontrado.contrasena))) {
             ctx.response.status = 401;
             ctx.response.body = {mensaje: "Contraseña incorrecta"};
             return;
