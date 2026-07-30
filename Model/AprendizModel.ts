@@ -17,7 +17,7 @@ export class aprendiz {
     }
 
     public async SeleccionarAprendiz(): Promise<AprendizData[]>{
-        const {rows: aprendiz} = await conexion.execute(`select * from aprendiz`);
+        const {rows: aprendiz} = await conexion.execute(`select idAprendiz, Nombres, Apellidos, idFicha, contrasena FROM aprendiz`);
         return aprendiz as AprendizData[];
     }
 

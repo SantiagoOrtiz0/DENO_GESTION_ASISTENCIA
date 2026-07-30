@@ -1,0 +1,11 @@
+GET http://localhost:8001/Registro
+###
+POST http://localhost:8001/Registro
+Content-Type: application/json
+
+{
+  "Nombres": "Paulo",
+  "Apellidos": "Martinez",
+  "contrasena": "12345",
+  "idFicha": 1
+}
