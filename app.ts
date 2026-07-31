@@ -2,6 +2,7 @@ import { Application, oakCors } from "./Dependencies/dependencias.ts";
 import { loginRouter } from "./Router/loginRouter.ts";
 import { AprendizRouter } from "./Router/aprendizRegistroRouter.ts";
 import { UserRouter } from "./Router/userRouter.ts";
+import { programaRouter } from "./Router/programasRouter.ts";
 
 const app = new Application();
 
@@ -9,7 +10,7 @@ app.use(oakCors({
     origin:"*"
 }));
 
-const routes = [UserRouter,loginRouter,AprendizRouter];
+const routes = [UserRouter,loginRouter,AprendizRouter, programaRouter];
 
 routes.forEach(router =>{
     app.use(router.routes());

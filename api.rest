@@ -23,3 +23,41 @@ Content-Type: application/json
 
 # Consulta de aprendices
 GET http://localhost:8001/Registro
+
+###
+
+# Consulta de programas
+GET http://localhost:8001/programa
+
+###
+
+# Crear programa
+POST http://localhost:8001/programa
+Content-Type: application/json
+
+{
+  "nombrePrograma": "TICS"
+}
+
+###
+
+# Actualizar programa
+PUT http://localhost:8001/programa
+Content-Type: application/json
+
+{
+  "idPrograma": 1,
+  "nombrePrograma" : "ADSO"
+}
+
+###
+
+# Eliminar programa
+DELETE http://localhost:8001/programa
+Content-Type: application/json
+
+{
+  "idPrograma": 2
+}
+
+###
