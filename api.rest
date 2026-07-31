@@ -57,11 +57,50 @@ DELETE http://localhost:8001/programa
 Content-Type: application/json
 
 {
-  "idPrograma": 2
+  "idPrograma": 3
 }
 
 ###
 
+# Consultar usuarios
+GET http://localhost:8001/usuario
+
+###
+
+# Registrar usuario
+POST http://localhost:8001/usuario
+Content-Type: application/json
+
+{
+  "nombres": "Carlos Arturo",
+  "apellidos": "Gomez",
+  "contrasena": "1234",
+  "idRol": 1
+}
+
+###
+
+# Actualizar usuario
+PUT http://localhost:8001/usuario
+Content-Type: application/json
+
+{
+  "idUsuario": 1,
+  "nombres": "Carlos Arturo",
+  "apellidos": "Gomez Ramirez",
+  "contrasena": "1234",
+  "idRol": 1
+}
+
+###
+
+### Eliminar usuario
+DELETE http://localhost:8001/usuario
+Content-Type: application/json
+
+{
+  "idUsuario": 2
+}
 # Consulta de asistencias
 GET http://localhost:8001/asistencia
 

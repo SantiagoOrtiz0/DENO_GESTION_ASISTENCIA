@@ -1,10 +1,5 @@
-import { RouterContext } from "../Dependencies/dependencias.ts";
 import { Context } from "../Dependencies/dependencias.ts";
 import { programa } from "../Model/ProgramaModel.ts";
-
-type ProgramaParams = {
-  id: string;
-} & Record<string, string | undefined>;
 
 export const getPrograma = async (ctx: Context) => {
     const {response} = ctx;
@@ -81,6 +76,32 @@ export const putProgama = async (ctx: Context) => {
             success: false,
             message: "Error al actualizar programa",
             erros: error instanceof Error ? error.message : String(error),
+        };
+    }
+};
+
+export const deletePrograma = async (ctx: Context) => {
+    const {request, response} = ctx;
+    try {
+        const body = await request.body.json();
+        const {idPrograma} = body;
+
+        const objPrograma = new programa(null, idPrograma);
+        const result = await objPrograma.EliminarPrograma();
+
+         response.status = 200;
+         response.body = {
+            success: true,
+            message: "Programa eliminado",
+            data: result,
+         };
+    } catch (error) {
+        console.error("Error al eliminar programa");
+        response.status = 400;
+        response.body = {
+            success: false,
+            message: "Error al eliminar programa",
+            errors: error instanceof Error ? error.message : String(error),
         };
     }
 };
