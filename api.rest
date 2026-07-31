@@ -101,3 +101,42 @@ Content-Type: application/json
 {
   "idUsuario": 2
 }
+# Consulta de asistencias
+GET http://localhost:8001/asistencia
+
+###
+
+# Crear asistencia
+POST http://localhost:8001/asistencia
+Content-Type: application/json
+
+{
+  "idAprendiz": 7,
+  "idHorario_Ficha_Asignatura": 1,
+  "Fecha": "2026-07-31",
+  "Estado": "Presente"
+}
+###
+
+# Actualizar asistencia
+PUT http://localhost:8001/asistencia
+Content-Type: application/json
+
+{
+  "idAsistencia": 6,
+  "idAprendiz": 7,
+  "idHorario_Ficha_Asignatura": 1,
+  "Fecha": "2026-07-31",
+  "Estado": "Falta"
+}
+###
+
+# Eliminar asistencia
+DELETE http://localhost:8001/asistencia
+Content-Type: application/json
+
+{
+  "idAsistencia": 6
+}
+
+###
