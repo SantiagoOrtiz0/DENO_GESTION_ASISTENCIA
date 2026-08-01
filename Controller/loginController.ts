@@ -2,6 +2,7 @@ import { Context } from "../Dependencies/dependencias.ts";
 import { conexion } from "../Model/conexion.ts";
 import { generarToken } from "../Utils/jwt.ts";
 import { bcrypt } from "../Dependencies/dependencias.ts";
+import { rol } from "../Model/RolModel.ts";
 
 export const PostLogin = async (ctx: Context) => {
     const body = await ctx.request.body.json();
@@ -20,6 +21,9 @@ export const PostLogin = async (ctx: Context) => {
 
     if (usuario && usuario.length > 0) {
         const encontrado = usuario[0];
+        const objRol = new rol(null, encontrado.idRol);
+        const [rolEncontrado] = await objRol.ConsultarRol();
+        const panel = rolEncontrado?.NombreRol?.toLowerCase() ?? "usuario";
 
         if (!(await bcrypt.compare(contrasena,encontrado.contrasena))) {
             ctx.response.status = 401;
@@ -33,10 +37,11 @@ export const PostLogin = async (ctx: Context) => {
             apellidos: encontrado.apellidos,
             idRol: encontrado.idRol,
             tipo: "usuario",
+            panel,
         });
 
         ctx.response.status = 200;
-        ctx.response.body = {mensaje: "Login exitoso", token, tipo: "usuario"};
+        ctx.response.body = {mensaje: "Login exitoso", token, tipo: "usuario", panel};
         return;
     }
 
@@ -47,6 +52,7 @@ export const PostLogin = async (ctx: Context) => {
 
     if(aprendices && aprendices.length > 0 ) {
         const encontrado = aprendices[0];
+        const panel = "aprendiz";
 
         if(!(await bcrypt.compare(contrasena,encontrado.contrasena))) {
             ctx.response.status = 401;
@@ -60,10 +66,11 @@ export const PostLogin = async (ctx: Context) => {
             Apellidos: encontrado.Apellidos,
             idFicha: encontrado.idFicha,
             tipo: "aprendiz",
+            panel,
         });
 
         ctx.response.status = 200;
-        ctx.response.body = {mensaje: "Login exitoso", token, tipo: "aprendiz"};
+        ctx.response.body = {mensaje: "Login exitoso", token, tipo: "aprendiz", panel};
         return;
     }
 

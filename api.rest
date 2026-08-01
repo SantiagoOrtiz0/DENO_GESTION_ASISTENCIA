@@ -15,14 +15,56 @@ POST http://localhost:8001/login
 Content-Type: application/json
 
 {
-  "Nombres": "Maria",
-  "Apellidos": "Perez",
-  "contrasena": "Contraseña"
+  "Nombres": "Juan Alejandro",
+  "Apellidos": "Perez Salazar",
+  "contrasena": "1234"
 }
 ###
 
 # Consulta de aprendices
 GET http://localhost:8001/Registro
+
+###
+
+# Consultar aprendices
+GET http://localhost:8001/Aprendiz
+
+###
+
+# Registrar aprendiz
+POST http://localhost:8001/Aprendiz
+Content-Type: application/json
+
+{
+    "Nombres": "Eduardo Alejandro",
+    "Apellidos": "Hernandez Sandoval",
+    "contrasena": "1234",
+    "idFicha": 1
+}
+
+###
+
+# Actualizar aprendiz
+PUT http://localhost:8001/Aprendiz
+Content-Type: application/json
+
+{
+    "idAprendiz": 1,
+    "Nombres": "Juan Alejandro",
+    "Apellidos": "Pérez Salazar",
+    "contrasena": "1234",
+    "idFicha": 1
+}
+
+###
+
+# Eliminar aprendiz
+DELETE http://localhost:8001/Aprendiz
+Content-Type: application/json
+
+{
+    "idAprendiz": 2
+}
 
 ###
 
@@ -137,6 +179,46 @@ Content-Type: application/json
 
 {
   "idAsistencia": 6
+}
+
+###
+
+# Consultar horarios
+GET http://localhost:8001/horario
+
+###
+
+# Registrar horario
+POST http://localhost:8001/horario
+Content-Type: application/json
+
+{
+    "Dia": "Lunes",
+    "HoraInicio": "08:00:00",
+    "HoraFin": "10:00:00"
+}
+
+###
+
+# Actualizar horario
+PUT http://localhost:8001/horario
+Content-Type: application/json
+
+{
+    "idHorario": 1,
+    "Dia": "Martes",
+    "HoraInicio": "08:00:00",
+    "HoraFin": "10:00:00"
+}
+
+###
+
+# Eliminar horario
+DELETE http://localhost:8001/horario
+Content-Type: application/json
+
+{
+    "idHorario": 1
 }
 
 ###
