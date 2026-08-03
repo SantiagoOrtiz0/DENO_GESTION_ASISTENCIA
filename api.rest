@@ -136,13 +136,15 @@ Content-Type: application/json
 
 ###
 
-### Eliminar usuario
+# Eliminar usuario
 DELETE http://localhost:8001/usuario
 Content-Type: application/json
 
 {
   "idUsuario": 2
 }
+###
+
 # Consulta de asistencias
 GET http://localhost:8001/asistencia
 
