@@ -10,7 +10,7 @@ Content-Type: application/json
 }
 ###
 
-# Validar usuario y generar JWT
+# Login usuario con JWT
 POST http://localhost:8001/login
 Content-Type: application/json
 
@@ -115,7 +115,7 @@ Content-Type: application/json
 
 {
   "nombres": "Carlos Arturo",
-  "apellidos": "Gomez",
+  "apellidos": "Gomez Perez",
   "contrasena": "1234",
   "idRol": 1
 }

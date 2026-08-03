@@ -14,16 +14,16 @@ export const PostLogin = async (ctx: Context) => {
         return;
     }
 
-    const {rows: usuario} = await conexion.execute (
-        `select * from usuario where nombres = ? and apellidos = ?`,
+    const {rows: usuario} = await conexion.execute(
+        `select u.*, r.NombreRol
+         from usuario u
+         left join rol r on u.idRol = r.idRol
+         where u.nombres = ? and u.apellidos = ?`,
         [Nombres, Apellidos]
     );
 
     if (usuario && usuario.length > 0) {
         const encontrado = usuario[0];
-        const objRol = new rol(null, encontrado.idRol);
-        const [rolEncontrado] = await objRol.ConsultarRol();
-        const panel = rolEncontrado?.NombreRol?.toLowerCase() ?? "usuario";
 
         if (!(await bcrypt.compare(contrasena,encontrado.contrasena))) {
             ctx.response.status = 401;
@@ -37,8 +37,9 @@ export const PostLogin = async (ctx: Context) => {
             apellidos: encontrado.apellidos,
             idRol: encontrado.idRol,
             tipo: "usuario",
-            panel,
         });
+
+        const panel = encontrado.NombreRol === "administrador" ? "administrador" : "instructor";
 
         ctx.response.status = 200;
         ctx.response.body = {mensaje: "Login exitoso", token, tipo: "usuario", panel};
