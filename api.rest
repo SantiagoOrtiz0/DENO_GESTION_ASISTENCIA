@@ -224,3 +224,52 @@ Content-Type: application/json
 }
 
 ###
+
+# Consultar asignatura
+GET http://localhost:8001/Asignatura
+
+###
+
+#Registro asignatura
+POST http://localhost:8001/Asignatura
+Content-Type: application/json
+
+{
+    "NombreAsignatura": "Calculo 1"
+}
+
+###
+
+#Actualizar asignatura
+PUT http://localhost:8001/Asignatura
+Content-Type: application/json
+
+{
+    "idAsignatura": 3,
+    "NombreAsignatura": "Calculo 2"
+}
+
+###
+
+#Eliminar asignatura
+DELETE http://localhost:8001/Asignatura
+Content-Type: application/json
+
+{
+    "idAsignatura": 3
+}
+
+###
+
+# Ficha
+GET http://localhost:8001/ficha
+
+###
+
+# UsuarioAsignatura
+GET http://localhost:8001/usuarioasignatura
+
+###
+
+# UsuarioFicha
+GEt http://localhost:8001/usuarioficha
