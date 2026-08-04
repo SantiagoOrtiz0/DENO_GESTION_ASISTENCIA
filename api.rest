@@ -15,9 +15,9 @@ POST http://localhost:8001/login
 Content-Type: application/json
 
 {
-  "Nombres": "Juan Alejandro",
-  "Apellidos": "Perez Salazar",
-  "contrasena": "1234"
+  "Nombres": "Maria",
+  "Apellidos": "Perez",
+  "contrasena": "Contraseña"
 }
 ###
 

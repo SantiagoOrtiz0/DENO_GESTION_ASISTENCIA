@@ -71,7 +71,7 @@ export const PostLogin = async (ctx: Context) => {
         });
 
         ctx.response.status = 200;
-        ctx.response.body = {mensaje: "Login exitoso", token, tipo: "aprendiz", panel};
+        ctx.response.body = {mensaje: "Login exitoso", token, tipo: "aprendiz", panel,idAprendiz: encontrado.idAprendiz};
         return;
     }
 
