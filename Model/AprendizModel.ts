@@ -6,6 +6,7 @@ interface AprendizData {
     Apellidos: string;
     idFicha: number | null;
     contrasena: string;
+    Numero_Ficha?: string
 }
 
 export class aprendiz {
@@ -17,7 +18,9 @@ export class aprendiz {
     }
 
     public async SeleccionarAprendiz(): Promise<AprendizData[]>{
-        const {rows: aprendiz} = await conexion.execute(`select idAprendiz, Nombres, Apellidos, idFicha, contrasena FROM aprendiz`);
+        const {rows: aprendiz} = await conexion.execute(`
+            select a.idAprendiz, a.Nombres, a.Apellidos, a.idFicha, a.contrasena, f.Numero_Ficha
+            from aprendiz a left join ficha f on a.idFicha = f.idFicha`);
         return aprendiz as AprendizData[];
     }
 
