@@ -4,7 +4,7 @@ interface UsuarioData {
     idUsuario: number | null;
     nombres: string;
     apellidos: string;
-    contrasena: string;
+    contrasena?: string;
     idRol: number | null;
 }
 
@@ -43,15 +43,35 @@ export class usuario {
     }
 
     public async ActualizarUsuario(): Promise<any>{
+        const campos: string[] = [];
+        const valores: any[] = [];
+
+        if (this._ObjUsuario?.nombres !== undefined) {
+            campos.push("nombres = ?");
+            valores.push(this._ObjUsuario.nombres);
+        }
+        if (this._ObjUsuario?.apellidos !== undefined) {
+            campos.push("apellidos = ?");
+            valores.push(this._ObjUsuario.apellidos);
+        }
+        if (this._ObjUsuario?.idRol !== undefined) {
+            campos.push("idRol = ?");
+            valores.push(this._ObjUsuario.idRol);
+        }
+        if (this._ObjUsuario?.contrasena) {
+            campos.push("contrasena = ?");
+            valores.push(this._ObjUsuario.contrasena);
+        }
+
+        if (campos.length === 0) {
+            return { affectedRows: 0 };
+        }
+
+        valores.push(this._idUsuario);
+
         const result = await conexion.execute(
-            `update usuario set nombres = ?, apellidos = ?, contrasena = ?, idRol = ? where idUsuario = ?`,
-            [
-                this._ObjUsuario?.nombres,
-                this._ObjUsuario?.apellidos,
-                this._ObjUsuario?.contrasena,
-                this._ObjUsuario?.idRol,
-                this._idUsuario,
-            ]
+            `update usuario set ${campos.join(", ")} where idUsuario = ?`,
+            valores
         );
         return result;
     }

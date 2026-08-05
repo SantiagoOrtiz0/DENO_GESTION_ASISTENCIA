@@ -39,7 +39,7 @@ export const PostLogin = async (ctx: Context) => {
             tipo: "usuario",
         });
 
-        const panel = encontrado.NombreRol === "administrador" ? "administrador" : "instructor";
+        const panel = encontrado.NombreRol?.toLowerCase() === "administrador" ? "administrador" : "instructor";
 
         ctx.response.status = 200;
         ctx.response.body = {mensaje: "Login exitoso", token, tipo: "usuario", panel, idUsuario: encontrado.idUsuario};

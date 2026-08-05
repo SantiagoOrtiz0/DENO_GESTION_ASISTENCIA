@@ -127,11 +127,9 @@ PUT http://localhost:8001/usuario
 Content-Type: application/json
 
 {
-  "idUsuario": 1,
-  "nombres": "Carlos Arturo",
-  "apellidos": "Gomez Ramirez",
+  "idUsuario": 4,
   "contrasena": "1234",
-  "idRol": 1
+  "idRol": 2
 }
 
 ###

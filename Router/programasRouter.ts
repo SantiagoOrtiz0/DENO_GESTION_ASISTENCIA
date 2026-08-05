@@ -4,7 +4,7 @@ import { getPrograma, postPrograma, putProgama, deletePrograma } from "../Contro
 const programaRouter = new Router();
 
 programaRouter.get("/programa", getPrograma)
-programaRouter.post("/Programa", postPrograma)
+programaRouter.post("/programa", postPrograma)
 programaRouter.put("/programa", putProgama)
 programaRouter.delete("/programa", deletePrograma)
 

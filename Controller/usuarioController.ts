@@ -64,13 +64,13 @@ export const putUsuario = async (ctx: Context) => {
         const body = await request.body.json();
         const {idUsuario ,nombres, apellidos, contrasena, idRol} = body;
 
-        const hashedPassword = await bcrypt.hash(contrasena);
+        const hashedPassword = contrasena ? await bcrypt.hash(contrasena) : undefined;
 
         const objPrograma = new usuario ({
             idUsuario,
             nombres,
             apellidos,
-            contrasena: hashedPassword,
+            ...(hashedPassword ? {contrasena: hashedPassword} : {}),
             idRol,
         }, idUsuario);
 
