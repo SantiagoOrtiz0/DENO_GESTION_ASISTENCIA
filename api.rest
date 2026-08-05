@@ -114,10 +114,10 @@ POST http://localhost:8001/usuario
 Content-Type: application/json
 
 {
-  "nombres": "Carlos Arturo",
-  "apellidos": "Gomez Perez",
+  "nombres": "Carlos",
+  "apellidos": "Gomez",
   "contrasena": "1234",
-  "idRol": 1
+  "idRol": 2
 }
 
 ###
@@ -271,3 +271,42 @@ GET http://localhost:8001/usuarioasignatura
 
 # UsuarioFicha
 GEt http://localhost:8001/usuarioficha
+
+###
+
+# Consultar horario_ficha_asignatura
+GET http://localhost:8001/horarioFichaAsignatura
+###
+
+# Crear relacion
+POST http://localhost:8001/horarioFichaAsignatura
+Content-Type: application/json
+
+{
+  "idFicha": 1,
+  "idHorario": 1,
+  "idAsignatura": 1
+}
+
+###
+
+# Actualizar relacion
+PUT http://localhost:8001/horarioFichaAsignatura
+Content-Type: application/json
+
+{
+  "idHorario_Ficha_Asignatura": 1,
+  "idFicha": 1,
+  "idHorario": 2,
+  "idAsignatura": 1
+}
+
+###
+
+# Eliminar relacion
+DELETE http://localhost:8001/horarioFichaAsignatura
+Content-Type: application/json
+
+{
+  "idHorario_Ficha_Asignatura": 2
+}
