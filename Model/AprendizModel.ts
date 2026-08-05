@@ -5,7 +5,7 @@ interface AprendizData {
     Nombres: string;
     Apellidos: string;
     idFicha: number | null;
-    contrasena: string;
+    contrasena?: string;
     Numero_Ficha?: string
 }
 
@@ -46,15 +46,35 @@ export class aprendiz {
     }
 
     public async ActualizarAprendiz(): Promise<any>{
+        const campos: string[] = [];
+        const valores: any[] = [];
+
+        if (this._ObjAprendiz?.Nombres !== undefined) {
+            campos.push("Nombres = ?");
+            valores.push(this._ObjAprendiz.Nombres);
+        }
+        if (this._ObjAprendiz?.Apellidos !== undefined) {
+            campos.push("Apellidos = ?");
+            valores.push(this._ObjAprendiz.Apellidos);
+        }
+        if (this._ObjAprendiz?.idFicha !== undefined) {
+            campos.push("idFicha = ?");
+            valores.push(this._ObjAprendiz.idFicha);
+        }
+        if (this._ObjAprendiz?.contrasena) {
+            campos.push("contrasena = ?");
+            valores.push(this._ObjAprendiz.contrasena);
+        }
+
+        if (campos.length === 0) {
+            return { affectedRows: 0 };
+        }
+
+        valores.push(this._idAprendiz);
+
         const result = await conexion.execute(
-            `update aprendiz set Nombres = ?, Apellidos = ?, idFicha = ?, contrasena = ? where idAprendiz = ?`,
-            [
-                this._ObjAprendiz?.Nombres,
-                this._ObjAprendiz?.Apellidos,
-                this._ObjAprendiz?.idFicha,
-                this._ObjAprendiz?.contrasena,
-                this._idAprendiz,
-            ]
+            `update aprendiz set ${campos.join(", ")} where idAprendiz = ?`,
+            valores
         );
         return result;
     }

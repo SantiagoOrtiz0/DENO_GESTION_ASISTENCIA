@@ -67,13 +67,13 @@ export const putAprendizCrud = async (ctx: Context) => {
         const {idAprendiz, Nombres, Apellidos, contrasena, idFicha} = body;
 
         // Encriptación de la contraseña
-        const hashedPassword = await bcrypt.hash(contrasena);
+        const hashedPassword = contrasena ? await bcrypt.hash(contrasena) : undefined;
 
         const objAprendiz = new aprendiz({
             idAprendiz,
             Nombres,
             Apellidos,
-            contrasena: hashedPassword,
+            ...(hashedPassword ? {contrasena: hashedPassword} : {}),
             idFicha,
         }, idAprendiz);
 
