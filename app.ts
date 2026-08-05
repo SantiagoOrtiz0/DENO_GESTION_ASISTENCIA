@@ -10,6 +10,7 @@ import { AsignaturaRouter } from "./Router/asignaturaRouter.ts";
 import { usuarioAsignaturaRouter } from "./Router/usuarioAsignaturaRouter.ts";
 import { usuarioFichaRouter } from "./Router/usuarioFichaRouter.ts";
 import { fichaRouter } from "./Router/fichaRouter.ts";
+import { horarioFichaAsignaturaRouter } from "./Router/horarioFichaAsignaturaRouter.ts";
 
 const app = new Application();
 
@@ -17,7 +18,7 @@ app.use(oakCors({
     origin:"*"
 }));
 
-const routes = [usuarioRouter,loginRouter,AprendizRouter, AprendizCrudRouter, programaRouter, asistenciaRouter, horarioRouter, AsignaturaRouter,usuarioAsignaturaRouter,usuarioFichaRouter,fichaRouter];
+const routes = [usuarioRouter,loginRouter,AprendizRouter, AprendizCrudRouter, programaRouter, asistenciaRouter, horarioRouter, AsignaturaRouter,usuarioAsignaturaRouter,usuarioFichaRouter,fichaRouter,horarioFichaAsignaturaRouter];
 
 routes.forEach(router =>{
     app.use(router.routes());
